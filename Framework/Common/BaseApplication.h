@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __FRAMEWORK_BASE_APPLICATION_
-#define __FRAMEWORK_BASE_APPLICATION_
+#ifndef __FRAMEWORK_BASE_APPLICATION_H
+#define __FRAMEWORK_BASE_APPLICATION_H
 
 #include "IApplication.h"
 
@@ -13,10 +13,11 @@ namespace slimenano
 		virtual void Finalize() override;
 		virtual void Tick() override;
 		virtual bool IsQuit() override;
+
 	protected:
 		bool m_bQuit;
 	};
 
 }
 
-#endif
+#endif //!__FRAMEWORK_BASE_APPLICATION_H

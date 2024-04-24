@@ -1,13 +1,14 @@
 #pragma once
-#ifndef __FRAMEWORK_IRUNTIMEMODULE_H
-#define __FRAMEWORK_IRUNTIMEMODULE_H
+#ifndef __FRAMEWORK_IRUNTIME_MODULE_H
+#define __FRAMEWORK_IRUNTIME_MODULE_H
 
-namespace slimenano{
+namespace slimenano
+{
 
     class IRuntimeModule
     {
     public:
-        virtual ~IRuntimeModule() {};
+        virtual ~IRuntimeModule(){};
         virtual int Initialize() = 0;
         virtual void Finalize() = 0;
         virtual void Tick() = 0;
@@ -15,6 +16,4 @@ namespace slimenano{
 
 }
 
-
-#endif //!__FRAMEWORK_IRUNTIMEMODULE_H
-
+#endif //!__FRAMEWORK_IRUNTIME_MODULE_H

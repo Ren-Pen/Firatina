@@ -1,13 +1,14 @@
 #include "BaseApplication.h"
 
-namespace slimenano {
+namespace slimenano
+{
 
-	int BaseApplication::Initialize() {
+	int BaseApplication::Initialize()
+	{
 
 		this->m_bQuit = false;
 
 		return 0;
-
 	}
 
 	void BaseApplication::Finalize()
