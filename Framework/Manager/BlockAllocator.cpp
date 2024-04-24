@@ -1,18 +1,25 @@
 #include <cassert>
 #include <cstring>
 
-#include "Allocator.h"
+#include "BlockAllocator.h"
 
 #ifndef _ALLOCATOR_ALIGN
 
-#define _ALLOCATOR_ALIGN(x, a) (((x) + ((a) - 1)) & ~((a) - 1))
+#define _ALLOCATOR_ALIGN(x, a) (((x) + ((a)-1)) & ~((a)-1))
 
 #endif //!_ALLOCATOR_ALIGN
 
 using namespace slimenano::memory;
 
+Allocator::Allocator()
+    : m_szDataSize(0), m_szPageSize(0), m_szAlignmentSize(0), m_szBlockSize(0), m_nBlocksPrePage(0),
+      m_nPages(0), m_nBlocks(0), m_nFreeBlocks(0), m_pPageList(nullptr), m_pFreeList(nullptr)
+{
+}
+
 Allocator::Allocator(size_t data_size, size_t page_size, size_t alignment)
-    : m_pPageList(nullptr), m_pFreeList(nullptr)
+    : m_szDataSize(0), m_szPageSize(0), m_szAlignmentSize(0), m_szBlockSize(0), m_nBlocksPrePage(0),
+      m_nPages(0), m_nBlocks(0), m_nFreeBlocks(0), m_pPageList(nullptr), m_pFreeList(nullptr)
 {
     Reset(data_size, page_size, alignment);
 }
@@ -128,9 +135,9 @@ void Allocator::FreeAll()
     m_nFreeBlocks = 0;
 }
 
-BlockHeader* Allocator::NextBlock(BlockHeader *pBlock)
+BlockHeader *Allocator::NextBlock(BlockHeader *pBlock)
 {
-    return reinterpret_cast<BlockHeader *>(reinterpret_cast<uint8_t*>(pBlock) + m_szBlockSize);
+    return reinterpret_cast<BlockHeader *>(reinterpret_cast<uint8_t *>(pBlock) + m_szBlockSize);
 }
 
 #ifdef _DEBUG
