@@ -4,21 +4,26 @@
 
 #include "IMemoryAllocator.h"
 
-namespace slimenano::memory
+namespace slimenano
 {
 
-    class StackMemoryAllocator : public IMemoryAllocator
+    namespace memory
     {
-    public:
-        virtual ~StackMemoryAllocator(){};
-        virtual int Initialize() override { return 0; };
-        virtual void Finalize() override {};
-        virtual void Tick() override {};
 
-    protected:
-        virtual void *Alloc(size_t size);
-        virtual void Free(void *pointer, size_t size);
-    };
+        class StackMemoryAllocator : public IMemoryAllocator
+        {
+        public:
+            virtual ~StackMemoryAllocator(){};
+            virtual int Initialize() override { return 0; };
+            virtual void Finalize() override{};
+            virtual void Tick() override{};
+
+        protected:
+            virtual void *Alloc(size_t size);
+            virtual void Free(void *pointer, size_t size);
+        };
+
+    }
 
 }
 
