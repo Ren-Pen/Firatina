@@ -6,6 +6,7 @@ set (CMAKE_CXX_STANDARD 11)
 
 include_directories("${PROJECT_SOURCE_DIR}/Framework/Common")
 include_directories("${PROJECT_SOURCE_DIR}/Framework/Manager")
+include_directories("${PROJECT_SOURCE_DIR}/Framework/Memory")
 include_directories("${PROJECT_SOURCE_DIR}/Framework/Interface")
 
 add_subdirectory(Framework)
