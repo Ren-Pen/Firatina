@@ -1,15 +1,15 @@
 #include <cstdio>
 
 #include "EmptyApplication.h"
-#include "StackMemoryAllocator.h"
+#include "SystemMemoryAllocator.h"
 
 #undef _DEBUG
 
 using slimenano::IApplication;
-using slimenano::memory::StackMemoryAllocator;
+using slimenano::unsafe::SystemMemoryAllocator;
 
 EmptyApplication g_App;
-StackMemoryAllocator memoryManager = StackMemoryAllocator();
+SystemMemoryAllocator* g_pMemoryManager = SystemMemoryAllocator::Instance();
 
 namespace slimenano
 {
@@ -18,13 +18,13 @@ namespace slimenano
 
 int EmptyApplication::Initialize()
 {
-    return memoryManager.Initialize();
+    return g_pMemoryManager->Initialize();
 }
 
 void EmptyApplication::Tick()
 {
     printf("Tick!\n");
-    char *word = memoryManager.New<char, 16>();
+    char *word = g_pMemoryManager->New<char, 16>();
     word[0] = 'H';
     word[1] = 'E';
     word[2] = 'L';
@@ -40,11 +40,11 @@ void EmptyApplication::Tick()
     word[12] = '\n';
     word[13] = '\0';
     printf(word);
-    memoryManager.Delete<16>(word);
+    g_pMemoryManager->Delete<16>(word);
     this->m_bQuit = true;
 }
 
 void EmptyApplication::Finalize()
 {
-    memoryManager.Finalize();
+    g_pMemoryManager->Finalize();
 }

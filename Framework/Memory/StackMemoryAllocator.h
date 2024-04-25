@@ -12,15 +12,19 @@ namespace slimenano
 
         class StackMemoryAllocator : public IMemoryAllocator
         {
+        private:
+            StackMemoryAllocator(){}
         public:
             virtual ~StackMemoryAllocator(){};
-            virtual int Initialize() override { return 0; };
-            virtual void Finalize() override{};
-            virtual void Tick() override{};
+            virtual int Initialize() override;
+            virtual void Finalize() override;
+            virtual void Tick() override;
 
-        protected:
-            virtual void *Alloc(size_t size);
-            virtual void Free(void *pointer, size_t size);
+        private:
+            virtual void *Alloc(size_t size) override;
+            virtual void Free(void *pointer, size_t size) override;
+        private:
+            
         };
 
     }
