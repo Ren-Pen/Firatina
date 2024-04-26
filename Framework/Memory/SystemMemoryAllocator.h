@@ -6,19 +6,22 @@
 
 namespace slimenano
 {
+    namespace memory
+    {
+        class BufferedMemoryAllocator;
+    }
 
     namespace unsafe
     {
 
-        class SystemMemoryAllocator : public memory::IMemoryAllocator
+        class SystemMemoryAllocator : private memory::IMemoryAllocator
         {
-        public:
-            static SystemMemoryAllocator* Instance();
+            friend slimenano::memory::BufferedMemoryAllocator;
+
+        private:
             virtual int Initialize() override;
             virtual void Finalize() override;
             virtual void Tick() override;
-        private:
-            static SystemMemoryAllocator m_sInstance;
             SystemMemoryAllocator();
             virtual ~SystemMemoryAllocator();
 

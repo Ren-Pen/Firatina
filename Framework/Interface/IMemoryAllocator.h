@@ -14,33 +14,30 @@ namespace slimenano
         class IMemoryAllocator : public IRuntimeModule
         {
         public:
+
+            void* New(size_t size)
+            {
+                return Alloc(size);
+            }
+
+            void Delete(void* p = nullptr, size_t size = 0)
+            {
+                Free(p, size);
+            }
+
             template <typename T, typename... Parameters>
             T *New(Parameters... parameters)
             {
                 return new (Alloc(sizeof(T))) T(parameters...);
             }
 
-            template <typename T, size_t size, typename... Parameters>
-            T *New(Parameters... parameters)
-            {
-                return new (Alloc(sizeof(T) * size)) T[size](parameters...);
-            }
-
             template <typename T>
             void Delete(T *p)
             {
-                reinterpret_cast<T *>(p)->~T();
-                Free(p, sizeof(T));
-            }
-
-            template <size_t size, typename T>
-            void Delete(T *p)
-            {
-                for (size_t i = 0; i < size; i++)
-                {
-                    reinterpret_cast<T *>(p + i)->~T();
+                if (p){
+                    reinterpret_cast<T *>(p)->~T();
                 }
-                Free(p, sizeof(T) * size);
+                Free(p, sizeof(T));
             }
 
         public:
