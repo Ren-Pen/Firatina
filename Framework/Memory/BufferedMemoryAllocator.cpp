@@ -5,53 +5,24 @@
 using slimenano::unsafe::SystemMemoryAllocator;
 using namespace slimenano::memory;
 
-BufferedMemoryAllocator::BufferedMemoryAllocator(size_t bufferSize)
+BufferedMemoryAllocator::BufferedMemoryAllocator(IMemoryAllocator *memoryAllocator, size_t bufferSize)
     : m_sBufferSize(bufferSize),
       m_sUsedSize(0),
-      m_mSysAllocator({}),
+      m_mAllocator(memoryAllocator),
       m_pvBuffer(nullptr)
 {
+    m_pvBuffer = memoryAllocator->Alloc(m_sBufferSize);
 }
 
 BufferedMemoryAllocator::~BufferedMemoryAllocator()
 {
-    Finalize();
-}
-
-int BufferedMemoryAllocator::Initialize()
-{
-    static bool f_sInitialized = false;
-    if (f_sInitialized)
-        return 0;
-    if (m_mSysAllocator.Initialize())
-    {
-        printf_s("Failed initialize sys allocator");
-        return 1;
-    }
-
-    if (!m_pvBuffer)
-    {
-        m_pvBuffer = m_mSysAllocator.Alloc(m_sBufferSize);
-    }
-
-    Reset();
-    f_sInitialized = true;
-    return 0;
-}
-
-void BufferedMemoryAllocator::Finalize()
-{
     if (m_pvBuffer)
     {
-        m_mSysAllocator.Free(m_pvBuffer, m_sBufferSize);
+        Reset();
+        m_mAllocator->Free(m_pvBuffer, m_sBufferSize);
         m_sUsedSize = 0;
         m_pvBuffer = nullptr;
     }
-    m_mSysAllocator.Finalize();
-}
-
-void BufferedMemoryAllocator::Tick()
-{
 }
 
 size_t BufferedMemoryAllocator::UsedSize() const
@@ -68,7 +39,7 @@ size_t BufferedMemoryAllocator::FreeSize() const
     return m_sBufferSize - m_sUsedSize;
 }
 
-void* BufferedMemoryAllocator::Buffer() const
+void *BufferedMemoryAllocator::Buffer() const
 {
     return m_pvBuffer;
 }

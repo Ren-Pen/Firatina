@@ -27,25 +27,6 @@ void SystemMemoryAllocator::Free(void *ptr, size_t size)
     ::operator delete(ptr);
 }
 
-int SystemMemoryAllocator::Initialize()
-{
-    return 0;
-}
-
-void SystemMemoryAllocator::Finalize()
-{
-#ifdef _DEBUG
-    if (m_sAllocated)
-    {
-        printf_s("Memory Leak: %lld\n", m_sAllocated);
-    }
-#endif //!_DEBUG
-}
-
-void SystemMemoryAllocator::Tick()
-{
-}
-
 SystemMemoryAllocator::SystemMemoryAllocator()
 #ifdef _DEBUG
     : m_sAllocated(0)
@@ -55,4 +36,10 @@ SystemMemoryAllocator::SystemMemoryAllocator()
 
 SystemMemoryAllocator::~SystemMemoryAllocator()
 {
+#ifdef _DEBUG
+    if (m_sAllocated)
+    {
+        printf_s("Memory Leak: %lld\n", m_sAllocated);
+    }
+#endif //!_DEBUG
 }

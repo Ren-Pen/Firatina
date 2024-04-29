@@ -5,42 +5,8 @@
 
 using namespace slimenano::memory;
 
-StackMemoryAllocator::StackMemoryAllocator(int bufferSize)
-    : BufferedMemoryAllocator(bufferSize + sizeof(m_pvTopFrame)), m_pvTopFrame(nullptr)
-{
-}
-
-StackMemoryAllocator::~StackMemoryAllocator()
-{
-    Finalize();
-}
-
-int StackMemoryAllocator::Initialize()
-{
-    static bool f_sInitialized = false;
-    if (f_sInitialized)
-        return 0;
-    int ret = BufferedMemoryAllocator::Initialize();
-    if (ret != 0)
-    {
-        return ret;
-    }
-    if (!Buffer())
-    {
-        printf_s("Failed initialize stack allocator");
-        return 1;
-    }
-    f_sInitialized = true;
-    return 0;
-}
-
-void StackMemoryAllocator::Finalize()
-{
-    Reset();
-    BufferedMemoryAllocator::Finalize();
-}
-
-void StackMemoryAllocator::Tick()
+StackMemoryAllocator::StackMemoryAllocator(IMemoryAllocator* memoryAllocator, int bufferSize)
+    : BufferedMemoryAllocator(memoryAllocator, bufferSize + sizeof(m_pvTopFrame)), m_pvTopFrame(nullptr)
 {
 }
 

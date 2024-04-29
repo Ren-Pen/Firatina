@@ -19,9 +19,6 @@ namespace slimenano
             friend slimenano::memory::BufferedMemoryAllocator;
 
         private:
-            virtual int Initialize() override;
-            virtual void Finalize() override;
-            virtual void Tick() override;
             SystemMemoryAllocator();
             virtual ~SystemMemoryAllocator();
 

@@ -42,11 +42,9 @@ namespace slimenano
 
         public:
             virtual ~IMemoryAllocator(){};
-            virtual int Initialize() override = 0;
-            virtual void Finalize() override = 0;
-            virtual void Tick() override = 0;
-
-        protected:
+            virtual int Initialize() override {};
+            virtual void Finalize() override {};
+            virtual void Tick() override {};
             virtual void *Alloc(size_t size) = 0;
             virtual void Free(void *pointer, size_t size) = 0;
         };
