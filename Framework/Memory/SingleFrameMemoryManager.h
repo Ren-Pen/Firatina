@@ -13,6 +13,9 @@ namespace slimenano
     {
         class SingleFrameMemoryManager : public BufferedMemoryManager
         {
+        private:
+            SingleFrameMemoryManager(const SingleFrameMemoryManager &) = delete;
+            SingleFrameMemoryManager &operator=(const SingleFrameMemoryManager &) = delete;
         public:
             SingleFrameMemoryManager(size_t bufferSize);
             SingleFrameMemoryManager(IMemoryManager &memoryAllocator, size_t bufferSize);

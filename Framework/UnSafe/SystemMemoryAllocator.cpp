@@ -1,4 +1,4 @@
-#include <new>
+#include <cstdlib>
 
 #ifdef _DEBUG
 #include <cstdio>
@@ -16,7 +16,7 @@ SystemMemoryAllocator& SystemMemoryAllocator::Instance(){ return m_sInstance; }
 
 void *SystemMemoryAllocator::Alloc(size_t size)
 {
-    void *buffer = ::operator new(size);
+    void *buffer = malloc(size);
 #ifdef _DEBUG
     std::memset(buffer, debug::D_MEM_SYS_ALLOC, size);
     m_sAllocated += size;
@@ -29,7 +29,7 @@ void SystemMemoryAllocator::Free(void *ptr, size_t size)
 #ifdef _DEBUG
     m_sAllocated -= size;
 #endif //!_DEBUG
-    ::operator delete(ptr);
+    free(ptr);
 }
 
 SystemMemoryAllocator::SystemMemoryAllocator()
