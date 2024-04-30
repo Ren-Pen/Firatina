@@ -23,8 +23,8 @@ namespace slimenano
             StackMemoryManager &operator=(const StackMemoryManager &) = delete;
 
         public:
-            StackMemoryManager(int bufferSize);
-            StackMemoryManager(IMemoryManager &memoryAllocator, size_t bufferSize);
+            StackMemoryManager(size_t bufferSize, size_t frameCapacity = 1);
+            StackMemoryManager(IMemoryManager &memoryAllocator, size_t bufferSize, size_t frameCapacity = 1);
             virtual void Reset() override;
             virtual void *Alloc(size_t size) override;
             virtual void Free(void *pointer, size_t size) override;

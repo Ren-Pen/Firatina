@@ -7,13 +7,13 @@
 using namespace slimenano::unsafe;
 using namespace slimenano::memory;
 
-slimenano::memory::StackMemoryManager::StackMemoryManager(int bufferSize)
-    :StackMemoryManager(SystemMemoryAllocator::Instance(), bufferSize)
+slimenano::memory::StackMemoryManager::StackMemoryManager(size_t bufferSize, size_t frameCapacity)
+    :StackMemoryManager(SystemMemoryAllocator::Instance(), bufferSize, frameCapacity)
 {
 }
 
-StackMemoryManager::StackMemoryManager(IMemoryManager &memoryAllocator, size_t bufferSize)
-    : BufferedMemoryManager(memoryAllocator, bufferSize + sizeof(m_pvTopFrame)), m_pvTopFrame(nullptr)
+StackMemoryManager::StackMemoryManager(IMemoryManager &memoryAllocator, size_t bufferSize, size_t frameCapacity)
+    : BufferedMemoryManager(memoryAllocator, bufferSize + sizeof(m_pvTopFrame) * frameCapacity), m_pvTopFrame(nullptr)
 {
 }
 
