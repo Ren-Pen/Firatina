@@ -24,8 +24,6 @@ namespace slimenano
             virtual void Finalize() override {};
             virtual void Tick() override {};
 
-        private:
-            static SystemMemoryAllocator m_sInstance;
         public:
             static SystemMemoryAllocator& Instance();
 #ifdef _DEBUG

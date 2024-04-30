@@ -10,9 +10,10 @@
 
 using slimenano::unsafe::SystemMemoryAllocator;
 
-SystemMemoryAllocator SystemMemoryAllocator::m_sInstance;
-
-SystemMemoryAllocator& SystemMemoryAllocator::Instance(){ return m_sInstance; }
+SystemMemoryAllocator& SystemMemoryAllocator::Instance(){ 
+    static SystemMemoryAllocator m_sInstance;
+    return m_sInstance;
+}
 
 void *SystemMemoryAllocator::Alloc(size_t size)
 {

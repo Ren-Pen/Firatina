@@ -15,4 +15,6 @@ _deps
 
 build
 
+out
+
 CMakeSettings.json
