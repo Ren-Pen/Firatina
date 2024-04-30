@@ -4,7 +4,7 @@
 
 #include <cstdint>
 
-#include "BufferedMemoryAllocator.h"
+#include "BufferedMemoryManager.h"
 
 namespace slimenano
 {
@@ -12,21 +12,23 @@ namespace slimenano
     namespace memory
     {
 
-        class StackMemoryAllocator : public BufferedMemoryAllocator
+        class StackMemoryManager : public BufferedMemoryManager
         {
         private:
             struct Frame
             {
                 Frame *m_pfLastFrame;
             };
+            StackMemoryManager(const StackMemoryManager &) = delete;
+            StackMemoryManager &operator=(const StackMemoryManager &) = delete;
 
         public:
-            StackMemoryAllocator(IMemoryAllocator* memoryAllocator, int bufferSize);
+            StackMemoryManager(int bufferSize);
+            StackMemoryManager(IMemoryManager &memoryAllocator, size_t bufferSize);
             virtual void Reset() override;
-
-        private:
             virtual void *Alloc(size_t size) override;
             virtual void Free(void *pointer, size_t size) override;
+            void Free();
             uint8_t *Top();
 
         private:

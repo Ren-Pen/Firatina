@@ -9,6 +9,10 @@
 
 using slimenano::unsafe::SystemMemoryAllocator;
 
+SystemMemoryAllocator SystemMemoryAllocator::m_sInstance;
+
+SystemMemoryAllocator& SystemMemoryAllocator::Instance(){ return m_sInstance; }
+
 void *SystemMemoryAllocator::Alloc(size_t size)
 {
     void *buffer = ::operator new(size);

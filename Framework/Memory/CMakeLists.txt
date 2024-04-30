@@ -1,4 +1,4 @@
 add_library(Memory 
-    BufferedMemoryAllocator.cpp
-    StackMemoryAllocator.cpp
+    BufferedMemoryManager.cpp
+    StackMemoryManager.cpp
 )

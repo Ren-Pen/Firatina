@@ -1,15 +1,15 @@
 #include <cstdio>
 
 #include "EmptyApplication.h"
-#include "StackMemoryAllocator.h"
+#include "StackMemoryManager.h"
 
 #undef _DEBUG
 
 using slimenano::IApplication;
-using slimenano::memory::StackMemoryAllocator;
+using slimenano::memory::StackMemoryManager;
 
 EmptyApplication g_App;
-StackMemoryAllocator *g_pMemoryAllocator;
+StackMemoryManager *g_pMemoryAllocator;
 
 namespace slimenano
 {
@@ -18,7 +18,7 @@ namespace slimenano
 
 int EmptyApplication::Initialize()
 {
-    g_pMemoryAllocator = new StackMemoryAllocator(64);
+    g_pMemoryAllocator = new StackMemoryManager(64);
     return g_pMemoryAllocator->Initialize();
     // return 0;
 }
@@ -26,13 +26,13 @@ int EmptyApplication::Initialize()
 void EmptyApplication::Tick()
 {
     printf("Tick!\n");
-    g_pMemoryAllocator->New(16);
-    g_pMemoryAllocator->New(16);
-    g_pMemoryAllocator->Delete();
-    g_pMemoryAllocator->Delete();
-    g_pMemoryAllocator->New(16);
-    g_pMemoryAllocator->New(18);
-    g_pMemoryAllocator->Delete();
+    g_pMemoryAllocator->Alloc(16);
+    g_pMemoryAllocator->Alloc(16);
+    g_pMemoryAllocator->Free();
+    g_pMemoryAllocator->Free();
+    g_pMemoryAllocator->Alloc(16);
+    g_pMemoryAllocator->Alloc(18);
+    g_pMemoryAllocator->Free();
     this->m_bQuit = true;
 }
 
