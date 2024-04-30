@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __FRAMWORK_BUFFERED_MEMORY_ALLOCATOR_H
-#define __FRAMWORK_BUFFERED_MEMORY_ALLOCATOR_H
+#ifndef __FRAMWORK_BUFFERED_MEMORY_MANAGER_H
+#define __FRAMWORK_BUFFERED_MEMORY_MANAGER_H
 
 #include <cstddef>
 #include "IMemoryManager.h"
@@ -46,4 +46,4 @@ namespace slimenano
     }
 }
 
-#endif
+#endif //!__FRAMWORK_BUFFERED_MEMORY_MANAGER_H

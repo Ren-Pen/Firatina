@@ -3,6 +3,7 @@
 #ifdef _DEBUG
 #include <cstdio>
 #include <cstring>
+#include "DebugHelper.h"
 #endif
 
 #include "SystemMemoryAllocator.h"
@@ -17,7 +18,7 @@ void *SystemMemoryAllocator::Alloc(size_t size)
 {
     void *buffer = ::operator new(size);
 #ifdef _DEBUG
-    std::memset(buffer, 0xFF, size);
+    std::memset(buffer, debug::D_MEM_SYS_ALLOC, size);
     m_sAllocated += size;
 #endif //!_DEBUG
     return buffer;

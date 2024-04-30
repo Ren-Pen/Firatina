@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __FRAMWORK_SYSTEM_MEMORY_ALLOCATOR
-#define __FRAMWORK_SYSTEM_MEMORY_ALLOCATOR
+#ifndef __FRAMWORK_SYSTEM_MEMORY_ALLOCATOR_H
+#define __FRAMWORK_SYSTEM_MEMORY_ALLOCATOR_H
 
 #include "IMemoryManager.h"
 
@@ -37,4 +37,4 @@ namespace slimenano
 
 }
 
-#endif //!__FRAMWORK_SYSTEM_MEMORY_ALLOCATOR
+#endif //!__FRAMWORK_SYSTEM_MEMORY_ALLOCATOR_H

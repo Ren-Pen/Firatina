@@ -1,6 +1,5 @@
 #include "BufferedMemoryManager.h"
 #include <cstdint>
-#include <cstdio>
 
 using namespace slimenano::memory;
 

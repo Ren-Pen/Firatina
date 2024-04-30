@@ -1,6 +1,9 @@
-#include <new>
-#include <cstdio>
+#include <cstdint>
+
+#ifdef _DEBUG
 #include <cstring>
+#include "DebugHelper.h"
+#endif //!_DEBUG
 #include "SystemMemoryAllocator.h"
 #include "StackMemoryManager.h"
 
@@ -8,7 +11,7 @@ using namespace slimenano::unsafe;
 using namespace slimenano::memory;
 
 slimenano::memory::StackMemoryManager::StackMemoryManager(size_t bufferSize, size_t frameCapacity)
-    :StackMemoryManager(SystemMemoryAllocator::Instance(), bufferSize, frameCapacity)
+    : StackMemoryManager(SystemMemoryAllocator::Instance(), bufferSize, frameCapacity)
 {
 }
 
@@ -42,7 +45,7 @@ void *StackMemoryManager::Alloc(size_t size)
     m_sUsedSize += new_size;
 
 #ifdef _DEBUG
-    memset(ptr, 0xFE, size);
+    memset(ptr, debug::D_MEM_STACK_ALLOC, size);
 #endif //!_DEBUG
 
     return ptr;
@@ -59,7 +62,7 @@ void StackMemoryManager::Free(void *pointer, size_t size)
     size_t free_size = (delete_frame - top) + sizeof(Frame);
     m_sUsedSize -= free_size;
 #ifdef _DEBUG
-    memset(top, 0xFD, free_size);
+    memset(top, debug::D_MEM_STACK_FREE, free_size);
 #endif //!_DEBUG
 }
 

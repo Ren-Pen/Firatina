@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __FRAMWORK_STACK_MEMORY_ALLOCATOR
-#define __FRAMWORK_STACK_MEMORY_ALLOCATOR
+#ifndef __FRAMWORK_STACK_MEMORY_MANAGER_H
+#define __FRAMWORK_STACK_MEMORY_MANAGER_H
 
 #include <cstdint>
 
@@ -39,4 +39,4 @@ namespace slimenano
 
 }
 
-#endif //!__FRAMWORK_STACK_MEMORY_ALLOCATOR
+#endif //!__FRAMWORK_STACK_MEMORY_MANAGER_H
