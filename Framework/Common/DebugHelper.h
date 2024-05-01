@@ -14,6 +14,7 @@
             const unsigned char D_MEM_STACK_FREE = 0xFD;
             const unsigned char D_MEM_S_FRAME_ALLOC = 0xFC;
             const unsigned char D_MEM_S_FRAME_FREE = 0xFB;
+            const unsigned char D_MEM_S_OBJ_FREE = 0xFA;
         }
     }
 
