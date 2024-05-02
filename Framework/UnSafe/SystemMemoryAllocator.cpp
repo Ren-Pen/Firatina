@@ -45,7 +45,7 @@ SystemMemoryAllocator::~SystemMemoryAllocator()
 #ifdef _DEBUG
     if (m_sAllocated)
     {
-        printf_s("Memory Leak: %lld\n", m_sAllocated);
+        printf("Memory Leak: %llu\n", (unsigned long long)m_sAllocated);
     }
 #endif //!_DEBUG
 }
