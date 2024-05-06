@@ -1,4 +1,4 @@
-#ifdef __WIN32__
+#if defined(__WIN32__) || defined(_WIN32)
 #include <windows.h>
 #include <windowsx.h>
 #include <tchar.h>
