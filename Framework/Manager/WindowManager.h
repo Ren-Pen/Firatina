@@ -1,0 +1,9 @@
+#pragma once
+#ifndef __FRAMEWORK_WINDOW_MANAGER_H
+#define __FRAMEWORK_WINDOW_MANAGER_H
+
+
+
+
+
+#endif //!__FRAMEWORK_WINDOW_MANAGER_H

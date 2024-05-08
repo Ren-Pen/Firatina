@@ -22,6 +22,7 @@ include_directories("${PROJECT_SOURCE_DIR}/Framework/UnSafe")
 include_directories("${PROJECT_SOURCE_DIR}/Framework/Manager")
 include_directories("${PROJECT_SOURCE_DIR}/Framework/Memory")
 include_directories("${PROJECT_SOURCE_DIR}/Framework/Interface")
+include_directories("${PROJECT_SOURCE_DIR}/Framework/Window")
 
 add_subdirectory(Framework)
 add_subdirectory(Platform)

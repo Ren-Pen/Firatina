@@ -1,4 +1,5 @@
 #include <cstdio>
+#include "FrameWorkDefinitions.h"
 #include "IApplication.h"
 
 namespace slimenano
